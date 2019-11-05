@@ -1,6 +1,7 @@
 import sys
-from graphviz import Digraph
 import yaml
+import networkx as nx
+import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
@@ -10,12 +11,22 @@ if __name__ == "__main__":
         print("Please path the compose file path")
         exit()
 
-    g = Digraph("G", filename="compose.gv", engine="sfdp")
+    g = nx.DiGraph()
     with open(fPath) as f:
         compose = yaml.load(f, Loader=yaml.BaseLoader)
         allNodes = list(compose["services"].keys())
         for node in allNodes:
-            g.node(node)
+            g.add_node(node)
             for depends in compose["services"][node].get("depends_on", []):
-                g.edge(node, depends)
-    g.view()
+                g.add_edge(node, depends)
+
+    pos = nx.circular_layout(g)
+    print(pos)
+
+    for node, coords in pos.items():
+        x, y = coords
+        shift = lambda val: 0.2 if val > 0 else -0.2
+        plt.text(x + shift(x), y + shift(y), node)
+
+    nx.draw_circular(g)
+    plt.show()
