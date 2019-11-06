@@ -21,12 +21,12 @@ if __name__ == "__main__":
                 g.add_edge(node, depends)
 
     pos = nx.circular_layout(g)
-    print(pos)
 
     for node, coords in pos.items():
         x, y = coords
-        shift = lambda val: 0.2 if val > 0 else -0.2
+        shift = lambda val: 0.1 if val > 0 else -0.1
         plt.text(x + shift(x), y + shift(y), node)
 
     nx.draw_circular(g)
-    plt.show()
+    # plt.show()
+    plt.savefig("compost.png")
