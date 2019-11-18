@@ -4,12 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 
-if __name__ == "__main__":
-    try:
-        fPath = sys.argv[1]
-    except IndexError:
-        print("Please path the compose file path")
-        exit()
+def createGraph(fPath):
 
     g = nx.DiGraph()
     with open(fPath) as f:
@@ -30,3 +25,14 @@ if __name__ == "__main__":
     nx.draw_circular(g)
     # plt.show()
     plt.savefig("compost.png")
+
+
+if __name__ == "__main__":
+    try:
+        fPath = sys.argv[1]
+    except IndexError:
+        print("Please path the compose file path")
+        exit()
+
+    createGraph(fPath)
+
