@@ -38,8 +38,7 @@ if __name__ == "__main__":
     try:
         fPath = sys.argv[1]
     except IndexError:
-        print("Please path the compose file path")
-        exit()
+        print("Please pass the compose file path")
+        sys.exit()
 
     createGraph(fPath)
-
