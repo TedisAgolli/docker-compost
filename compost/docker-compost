@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+
+from compost.compost import createGraph
+import sys
+
+try:
+    fPath = sys.argv[1]
+    print(createGraph(fPath))
+except IndexError:
+    print("Please pass the compose file path")
+    sys.exit()
+
