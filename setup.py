@@ -5,5 +5,5 @@ setup(
     version="0.1",
     packages=["compost"],
     install_requires=["pyyaml", "networkx", "matplotlib"],
-    scripts=["compost/docker-compost"],
+    scripts=["compost/compost"],
 )
